@@ -44,8 +44,7 @@ $ tox
 ``` yaml
 # Dependencies management
 halyard_system_dependencies: "{{ _halyard_system_dependencies }}"
-halyard_use_ansible_galaxy_dependencies: True  # Use role dependencies in meta
-halyard_use_system_dependencies: False  # Else, you can install system packages
+halyard_use_system_dependencies: True  # Install system packages
 
 # Dedicated user management
 halyard_group:
@@ -57,10 +56,10 @@ halyard_user:
 # Paths
 halyard_dirs:
   src:
-    path: '/opt/src/halyard'
+    path: '/opt/halyard-git'
 
 # General
-halyard_version: '0.32.0'
+halyard_version: '0.34.0'
 
 # Git settings
 halyard_git_repo_url: 'https://github.com/spinnaker/halyard.git'
@@ -77,16 +76,21 @@ halyard_install_term: 'vt100'  # Ensure a TERM is defined due to tput usage
 
 ## Dependencies
 
-> You can disable role dependencies using *halyard_use_ansible_galaxy_dependencies* and setting *False*
+`curl`, `git` and `openjdk-8-jre` are required:
 
-* [infOpen.openjdk-jre](https://galaxy.ansible.com/infOpen/openjdk-jre/)
-
+- Setting `halyard_use_system_dependencies` to `True`(default) will install them.
+- Ansible roles can also be used.
 
 ## Example Playbook
 
 ``` yaml
 - hosts: servers
   roles:
+    # System dependencies - only required if `halyard_use_system_dependencies` is set to `False`
+    - { role: infOpen.curl }
+    - { role: infOpen.git }
+    - { role: infOpen.openjdk-jre }
+    # Halyard role
     - { role: infOpen.halyard }
 ```
 

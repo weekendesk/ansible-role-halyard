@@ -9,4 +9,3 @@
   with_items: "{{ halyard_system_dependencies }}"
   when:
     - "halyard_use_system_dependencies"
-    - "not halyard_use_ansible_galaxy_dependencies"

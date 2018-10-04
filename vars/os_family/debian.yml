@@ -5,5 +5,5 @@
 _halyard_system_dependencies:
   - name: 'curl'
   - name: 'git'
-
+  - name: 'openjdk-8-jre-headless'
 _halyard_install_script: 'install/debian/InstallHalyard.sh'

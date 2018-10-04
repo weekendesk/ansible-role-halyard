@@ -4,8 +4,7 @@
 
 # Dependencies management
 halyard_system_dependencies: "{{ _halyard_system_dependencies }}"
-halyard_use_ansible_galaxy_dependencies: True  # Use role dependencies in meta
-halyard_use_system_dependencies: False  # Else, you can install system packages
+halyard_use_system_dependencies: True  # Install system packages
 
 # Dedicated user management
 halyard_group:
@@ -17,10 +16,10 @@ halyard_user:
 # Paths
 halyard_dirs:
   src:
-    path: '/opt/src/halyard'
+    path: '/opt/halyard-git'
 
 # General
-halyard_version: '0.32.0'
+halyard_version: '0.34.0'
 
 # Git settings
 halyard_git_repo_url: 'https://github.com/spinnaker/halyard.git'
