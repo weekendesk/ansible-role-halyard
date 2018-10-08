@@ -4,8 +4,9 @@
 
 - name: 'INSTALL | APT | Install Debian family dependencies'
   apt:
-    name: "{{ item.name }}"
-    state: "{{ item.state | default('present') }}"
-  with_items: "{{ halyard_system_dependencies }}"
-  when:
-    - "halyard_use_system_dependencies"
+    name:
+      - curl
+      - git
+      - openjdk-8-jre-headless
+    state: latest
+  when: "halyard_use_system_dependencies"

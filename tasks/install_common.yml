@@ -19,21 +19,18 @@
 
 - name: 'INSTALL | COMMON | Get Halyard source from Git'
   git:
-    dest: "{{ halyard_dirs.src.path }}"
+    dest: "{{ halyard_git_dir }}"
     repo: "{{ halyard_git_repo_url }}"
     version: "{{ halyard_git_version }}"
-  register: '_halyard_task_clone_repository'
-
+  register: 'halyard_task_clone_repository'
 
 - name: 'INSTALL | Launch install script'
-  command: >
-    /bin/bash
-    ./{{ halyard_install_script }} {{ halyard_install_command_options }}
+  command: "/bin/bash ./install/{{ ansible_os_family | lower }}/InstallHalyard.sh {{ halyard_install_command_options }}"
   args:
-    chdir: "{{ halyard_dirs.src.path }}"
+    chdir: "{{ halyard_git_dir }}"
   environment:
     TERM: "{{ halyard_install_term }}"
-  when: "_halyard_task_clone_repository.changed"
+  when: "halyard_task_clone_repository.changed"
 
 - name: "PERMISSION | Enhance the halyard home's security"
   file: dest={{ halyard_user.home }} mode=0750

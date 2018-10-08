@@ -43,7 +43,6 @@ $ tox
 
 ``` yaml
 # Dependencies management
-halyard_system_dependencies: "{{ _halyard_system_dependencies }}"
 halyard_use_system_dependencies: True  # Install system packages
 
 # Dedicated user management
@@ -54,19 +53,16 @@ halyard_user:
   home: '/var/lib/halyard'
 
 # Paths
-halyard_dirs:
-  src:
-    path: '/opt/halyard-git'
+halyard_git_dir: '/tmp/halyard-git'
 
 # General
-halyard_version: '0.34.0'
+halyard_version: '1.6.0'
 
 # Git settings
 halyard_git_repo_url: 'https://github.com/spinnaker/halyard.git'
-halyard_git_version: "v{{ halyard_version }}"
+halyard_git_version: "version-{{ halyard_version }}"
 
 # Install script
-halyard_install_script: "{{ _halyard_install_script }}"
 halyard_install_command_options: >
   --user {{ halyard_user.name }}
   --version {{ halyard_version }}
