@@ -31,6 +31,3 @@
   environment:
     TERM: "{{ halyard_install_term }}"
   when: "halyard_task_clone_repository.changed"
-
-- name: "PERMISSION | Enhance the halyard home's security"
-  file: dest={{ halyard_user.home }} mode=0750
